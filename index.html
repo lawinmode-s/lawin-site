@@ -62,11 +62,19 @@ nav a:hover{
 
 .hero h2{
   font-size:48px;
-  margin-bottom:25px;
+  margin-bottom:20px;
   background:linear-gradient(90deg,var(--gold),var(--green));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   letter-spacing:1px;
+}
+
+.separator{
+  width:80px;
+  height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--green));
+  margin:20px auto 35px auto;
+  border-radius:10px;
 }
 
 .hero p{
@@ -75,6 +83,13 @@ nav a:hover{
   line-height:1.8;
   max-width:700px;
   margin:auto;
+}
+
+.signature{
+  margin-top:40px;
+  font-size:14px;
+  color:rgba(255,255,255,0.5);
+  letter-spacing:1px;
 }
 
 footer{
@@ -105,10 +120,17 @@ footer{
 
 <section class="hero">
   <h2>IA Analyse Sportive</h2>
+
+  <div class="separator"></div>
+
   <p>
     Analyse stratégique des rencontres sportives avec lecture contextuelle,
     approche structurée et gestion intelligente du risque.<br><br>
     SAFE • SEMI • FUN — vision claire, méthode maîtrisée.
+  </p>
+
+  <p class="signature">
+    Plateforme indépendante • Approche responsable • Vision long terme
   </p>
 </section>
 
