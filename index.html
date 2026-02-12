@@ -12,7 +12,7 @@
   --gold:#d4af37;
   --green:#22c55e;
   --text:#ffffff;
-  --muted:rgba(255,255,255,0.7);
+  --muted:rgba(255,255,255,0.75);
 }
 
 *{box-sizing:border-box;}
@@ -55,85 +55,26 @@ nav a:hover{
 
 .hero{
   text-align:center;
-  padding:140px 20px;
+  padding:180px 20px 140px 20px;
   max-width:900px;
   margin:auto;
 }
 
 .hero h2{
-  font-size:46px;
-  margin-bottom:20px;
+  font-size:48px;
+  margin-bottom:25px;
   background:linear-gradient(90deg,var(--gold),var(--green));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  letter-spacing:1px;
 }
 
 .hero p{
-  font-size:18px;
+  font-size:19px;
   color:var(--muted);
-  line-height:1.6;
-}
-
-.buttons{
-  margin-top:40px;
-}
-
-.btn{
-  display:inline-block;
-  padding:14px 30px;
-  margin:10px;
-  border-radius:30px;
-  font-weight:bold;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-.btn-primary{
-  background:var(--gold);
-  color:black;
-}
-
-.btn-primary:hover{
-  box-shadow:0 0 25px rgba(212,175,55,0.6);
-  transform:translateY(-3px);
-}
-
-.btn-secondary{
-  border:2px solid var(--green);
-  color:var(--green);
-}
-
-.btn-secondary:hover{
-  background:var(--green);
-  color:black;
-  transform:translateY(-3px);
-}
-
-.features{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-  max-width:1100px;
-  margin:100px auto;
-  padding:0 20px;
-}
-
-.card{
-  background:var(--panel);
-  padding:30px;
-  border-radius:20px;
-  border:1px solid rgba(212,175,55,0.2);
-  transition:0.4s;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 35px rgba(212,175,55,0.3);
-}
-
-.card h3{
-  color:var(--gold);
-  margin-bottom:10px;
+  line-height:1.8;
+  max-width:700px;
+  margin:auto;
 }
 
 footer{
@@ -163,33 +104,12 @@ footer{
 </header>
 
 <section class="hero">
-  <h2>Tipster IA Nouvelle Génération</h2>
+  <h2>IA Analyse Sportive</h2>
   <p>
-    Analyse stratégique. Lecture contextuelle. Gestion intelligente du risque.<br>
-    SAFE • SEMI • FUN — vision maîtrisée.
+    Analyse stratégique des rencontres sportives avec lecture contextuelle,
+    approche structurée et gestion intelligente du risque.<br><br>
+    SAFE • SEMI • FUN — vision claire, méthode maîtrisée.
   </p>
-
-  <div class="buttons">
-    <a href="ia.html" class="btn btn-primary">Accéder à l’IA</a>
-    <a href="pronos.html" class="btn btn-secondary">Voir les Pronos</a>
-  </div>
-</section>
-
-<section class="features">
-  <div class="card">
-    <h3>Analyse Structurée</h3>
-    <p>Lecture complète des matchs avec approche logique.</p>
-  </div>
-
-  <div class="card">
-    <h3>Gestion du Risque</h3>
-    <p>SAFE / SEMI / FUN pour décider intelligemment.</p>
-  </div>
-
-  <div class="card">
-    <h3>Vision Long Terme</h3>
-    <p>Projet évolutif et stratégie responsable.</p>
-  </div>
 </section>
 
 <footer>
