@@ -15,17 +15,16 @@
   --muted:rgba(255,255,255,0.75);
 }
 
-*{box-sizing:border-box;}
+*{box-sizing:border-box;margin:0;padding:0;}
 
 body{
-  margin:0;
   font-family:Arial, sans-serif;
   background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
 }
 
-/* 🔥 Fond animé subtil */
+/* Fond animé subtil */
 body::before{
   content:"";
   position:fixed;
@@ -33,9 +32,9 @@ body::before{
   left:-50%;
   width:200%;
   height:200%;
-  background:radial-gradient(circle at 30% 30%, rgba(212,175,55,0.08), transparent 40%),
-             radial-gradient(circle at 70% 70%, rgba(34,197,94,0.08), transparent 40%);
-  animation:moveBg 18s linear infinite;
+  background:radial-gradient(circle at 30% 30%, rgba(212,175,55,0.07), transparent 40%),
+             radial-gradient(circle at 70% 70%, rgba(34,197,94,0.07), transparent 40%);
+  animation:moveBg 25s linear infinite;
   z-index:-1;
 }
 
@@ -44,6 +43,7 @@ body::before{
   100%{transform:rotate(360deg);}
 }
 
+/* NAVBAR */
 header{
   display:flex;
   justify-content:space-between;
@@ -54,25 +54,75 @@ header{
   backdrop-filter:blur(8px);
 }
 
-header h1{
-  margin:0;
-  font-size:20px;
+.logo{
+  font-size:18px;
+  font-weight:bold;
   color:var(--gold);
   letter-spacing:1px;
 }
 
+nav{
+  display:flex;
+  gap:25px;
+}
+
 nav a{
-  color:var(--text);
+  position:relative;
   text-decoration:none;
-  margin-left:20px;
+  color:var(--text);
   font-weight:bold;
   transition:0.3s;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--green));
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
 }
 
 nav a:hover{
   color:var(--gold);
 }
 
+/* MENU MOBILE */
+.menu-toggle{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
+
+@media(max-width:768px){
+
+  nav{
+    position:absolute;
+    top:70px;
+    right:0;
+    background:var(--panel);
+    flex-direction:column;
+    width:200px;
+    padding:20px;
+    display:none;
+  }
+
+  nav.active{
+    display:flex;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+}
+
+/* HERO */
 .hero{
   text-align:center;
   padding:180px 20px 140px 20px;
@@ -82,12 +132,11 @@ nav a:hover{
 }
 
 .hero h2{
-  font-size:48px;
+  font-size:42px;
   margin-bottom:20px;
   background:linear-gradient(90deg,var(--gold),var(--green));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  letter-spacing:1px;
 }
 
 .separator{
@@ -99,18 +148,15 @@ nav a:hover{
 }
 
 .hero p{
-  font-size:19px;
+  font-size:18px;
   color:var(--muted);
   line-height:1.8;
-  max-width:700px;
-  margin:auto;
 }
 
 .signature{
   margin-top:40px;
   font-size:14px;
   color:rgba(255,255,255,0.5);
-  letter-spacing:1px;
 }
 
 footer{
@@ -130,8 +176,11 @@ footer{
 <body>
 
 <header>
-  <h1>IA BY LAWIN</h1>
-  <nav>
+  <div class="logo">IA BY LAWIN</div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav">
     <a href="index.html">Accueil</a>
     <a href="ia.html">IA</a>
     <a href="pronos.html">Pronos</a>
@@ -141,15 +190,12 @@ footer{
 
 <section class="hero">
   <h2>IA Analyse Sportive</h2>
-
   <div class="separator"></div>
-
   <p>
     Analyse stratégique des rencontres sportives avec lecture contextuelle,
     approche structurée et gestion intelligente du risque.<br><br>
     SAFE • SEMI • FUN — vision claire, méthode maîtrisée.
   </p>
-
   <p class="signature">
     Plateforme indépendante • Approche responsable • Vision long terme
   </p>
@@ -158,6 +204,12 @@ footer{
 <footer>
 © 2026 — IA by Lawin • Jeu responsable recommandé
 </footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
