@@ -8,7 +8,7 @@
 <style>
 :root{
   --bg:#0b0f19;
-  --panel:rgba(17,24,39,0.8);
+  --panel:rgba(17,24,39,0.85);
   --gold:#d4af37;
   --green:#22c55e;
   --yellow:#facc15;
@@ -137,7 +137,6 @@ button{
 
 button:hover{
   box-shadow:0 0 20px rgba(212,175,55,0.6);
-  transform:translateY(-2px);
 }
 
 .loading{
@@ -168,12 +167,27 @@ button:hover{
   border:1px solid rgba(212,175,55,0.2);
   text-align:left;
   margin-top:20px;
-  transition:0.3s;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 25px rgba(212,175,55,0.3);
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.progress{
+  height:6px;
+  background:rgba(255,255,255,0.1);
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+.progress-bar{
+  height:6px;
+  width:0;
+  transition:width 1s ease;
 }
 
 .safe{color:var(--green);}
@@ -215,20 +229,40 @@ button:hover{
   <div class="analysis-title" id="analysisTitle"></div>
 
   <div class="results" id="results">
+
     <div class="card">
-      <h3 class="safe">SAFE</h3>
+      <div class="card-header">
+        <h3 class="safe">🟢 SAFE</h3>
+        <span id="safePercent"></span>
+      </div>
       <p id="safeText"></p>
+      <div class="progress">
+        <div class="progress-bar" id="safeBar" style="background:#22c55e;"></div>
+      </div>
     </div>
 
     <div class="card">
-      <h3 class="semi">SEMI</h3>
+      <div class="card-header">
+        <h3 class="semi">🟡 SEMI</h3>
+        <span id="semiPercent"></span>
+      </div>
       <p id="semiText"></p>
+      <div class="progress">
+        <div class="progress-bar" id="semiBar" style="background:#facc15;"></div>
+      </div>
     </div>
 
     <div class="card">
-      <h3 class="fun">FUN</h3>
+      <div class="card-header">
+        <h3 class="fun">🔴 FUN</h3>
+        <span id="funPercent"></span>
+      </div>
       <p id="funText"></p>
+      <div class="progress">
+        <div class="progress-bar" id="funBar" style="background:#ef4444;"></div>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -239,7 +273,6 @@ function toggleMenu(){
 
 function analyzeMatch(){
   const match = document.getElementById("matchInput").value;
-
   if(match.trim() === ""){
     alert("Veuillez entrer une rencontre.");
     return;
@@ -252,24 +285,34 @@ function analyzeMatch(){
   setTimeout(function(){
 
     document.getElementById("loading").style.display = "none";
-
     document.getElementById("analysisTitle").innerHTML =
       "Analyse du match : " + match;
-
     document.getElementById("analysisTitle").style.display = "block";
 
+    const safe = Math.floor(Math.random()*20)+65;
+    const semi = Math.floor(Math.random()*20)+45;
+    const fun = Math.floor(Math.random()*20)+20;
+
+    document.getElementById("safePercent").innerHTML = safe+"%";
+    document.getElementById("semiPercent").innerHTML = semi+"%";
+    document.getElementById("funPercent").innerHTML = fun+"%";
+
+    document.getElementById("safeBar").style.width = safe+"%";
+    document.getElementById("semiBar").style.width = semi+"%";
+    document.getElementById("funBar").style.width = fun+"%";
+
     document.getElementById("safeText").innerHTML =
-      "Option prudente basée sur la stabilité récente et la gestion défensive.";
+      "Option prudente basée sur la stabilité récente et le contexte favorable.";
 
     document.getElementById("semiText").innerHTML =
-      "Option intermédiaire combinant dynamique offensive et contexte tactique.";
+      "Option intermédiaire combinant dynamique et opportunité tactique.";
 
     document.getElementById("funText").innerHTML =
-      "Option spéculative avec potentiel élevé selon scénario ouvert.";
+      "Option spéculative dépendant d'un scénario offensif ouvert.";
 
     document.getElementById("results").style.display = "block";
 
-  }, 1500);
+  },1500);
 }
 </script>
 
