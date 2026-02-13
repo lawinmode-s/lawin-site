@@ -8,7 +8,7 @@
 <style>
 :root{
   --bg:#0b0f19;
-  --panel:#111827;
+  --panel:rgba(17,24,39,0.8);
   --gold:#d4af37;
   --green:#22c55e;
   --yellow:#facc15;
@@ -79,7 +79,7 @@ nav a:hover::after{
     position:absolute;
     top:70px;
     right:0;
-    background:var(--panel);
+    background:rgba(17,24,39,0.95);
     flex-direction:column;
     width:200px;
     padding:20px;
@@ -132,32 +132,58 @@ button{
   background:var(--gold);
   font-weight:bold;
   cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  box-shadow:0 0 20px rgba(212,175,55,0.6);
+  transform:translateY(-2px);
+}
+
+.loading{
+  margin-top:40px;
+  font-style:italic;
+  color:var(--muted);
+  display:none;
 }
 
 .analysis-title{
-  margin-top:50px;
+  margin-top:40px;
   font-size:22px;
   font-weight:bold;
+  display:none;
 }
 
 .results{
   margin-top:30px;
   display:none;
-  gap:25px;
+  animation:fadeIn 0.8s ease;
 }
 
 .card{
   background:var(--panel);
+  backdrop-filter:blur(8px);
   padding:30px;
   border-radius:20px;
   border:1px solid rgba(212,175,55,0.2);
   text-align:left;
   margin-top:20px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(212,175,55,0.3);
 }
 
 .safe{color:var(--green);}
 .semi{color:var(--yellow);}
 .fun{color:var(--red);}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
 </style>
 </head>
 
@@ -182,10 +208,13 @@ button{
   <br>
   <button onclick="analyzeMatch()">Analyser</button>
 
+  <div class="loading" id="loading">
+    Analyse en cours...
+  </div>
+
   <div class="analysis-title" id="analysisTitle"></div>
 
   <div class="results" id="results">
-
     <div class="card">
       <h3 class="safe">SAFE</h3>
       <p id="safeText"></p>
@@ -200,7 +229,6 @@ button{
       <h3 class="fun">FUN</h3>
       <p id="funText"></p>
     </div>
-
   </div>
 </div>
 
@@ -217,19 +245,31 @@ function analyzeMatch(){
     return;
   }
 
-  document.getElementById("analysisTitle").innerHTML = 
-    "Analyse du match : " + match;
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("analysisTitle").style.display = "none";
+  document.getElementById("results").style.display = "none";
 
-  document.getElementById("safeText").innerHTML =
-    "Option prudente basée sur la dynamique récente et la stabilité de l'équipe favorite.";
+  setTimeout(function(){
 
-  document.getElementById("semiText").innerHTML =
-    "Option équilibrée combinant rendement potentiel et lecture tactique.";
+    document.getElementById("loading").style.display = "none";
 
-  document.getElementById("funText").innerHTML =
-    "Option plus spéculative à forte valeur potentielle.";
+    document.getElementById("analysisTitle").innerHTML =
+      "Analyse du match : " + match;
 
-  document.getElementById("results").style.display = "block";
+    document.getElementById("analysisTitle").style.display = "block";
+
+    document.getElementById("safeText").innerHTML =
+      "Option prudente basée sur la stabilité récente et la gestion défensive.";
+
+    document.getElementById("semiText").innerHTML =
+      "Option intermédiaire combinant dynamique offensive et contexte tactique.";
+
+    document.getElementById("funText").innerHTML =
+      "Option spéculative avec potentiel élevé selon scénario ouvert.";
+
+    document.getElementById("results").style.display = "block";
+
+  }, 1500);
 }
 </script>
 
