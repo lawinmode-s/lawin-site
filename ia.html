@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA - Lawin</title>
+<title>Contact - Lawin</title>
 
 <style>
 :root{
@@ -21,7 +21,6 @@ body{
   font-family:Arial, sans-serif;
   background:var(--bg);
   color:var(--text);
-  overflow-x:hidden;
 }
 
 /* NAVBAR */
@@ -107,29 +106,33 @@ nav a:hover{
 
 .container h2{
   font-size:36px;
-  margin-bottom:20px;
+  margin-bottom:30px;
   background:linear-gradient(90deg,var(--gold),var(--green));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-input{
-  padding:14px;
-  width:80%;
-  max-width:400px;
-  border-radius:25px;
-  border:none;
-  margin-top:20px;
+.container p{
+  color:var(--muted);
+  margin-bottom:40px;
 }
 
-button{
-  margin-top:20px;
-  padding:12px 25px;
-  background:var(--gold);
-  border:none;
-  border-radius:25px;
+.btn{
+  display:inline-block;
+  margin:15px;
+  padding:14px 28px;
+  border-radius:30px;
   font-weight:bold;
-  cursor:pointer;
+  text-decoration:none;
+  transition:0.3s;
+  border:2px solid var(--gold);
+  color:var(--gold);
+}
+
+.btn:hover{
+  background:var(--gold);
+  color:black;
+  box-shadow:0 0 20px rgba(212,175,55,0.5);
 }
 </style>
 </head>
@@ -148,14 +151,14 @@ button{
 </header>
 
 <div class="container">
-  <h2>Analyse IA</h2>
-  <p style="margin-top:10px;color:var(--muted);">
-    Entrez un match pour obtenir un avis structuré.
+  <h2>Me Contacter</h2>
+  <p>
+    Pour toute collaboration, échange ou information complémentaire.
   </p>
 
-  <input type="text" placeholder="Ex : PSG vs Marseille">
-  <br>
-  <button>Analyser</button>
+  <a href="#" class="btn">TikTok</a>
+  <a href="#" class="btn">Telegram</a>
+  <a href="mailto:tonemail@example.com" class="btn">Email</a>
 </div>
 
 <script>
