@@ -60,7 +60,7 @@ nav a::after{
   bottom:-6px;
   width:0;
   height:2px;
-  background:linear-gradient(90deg,var(--gold),var(--green));
+  background:linear-gradient(90deg,var(--gold),#22c55e);
   transition:0.3s;
 }
 
@@ -106,7 +106,7 @@ nav a:hover::after{
 .container h2{
   font-size:36px;
   margin-bottom:15px;
-  background:linear-gradient(90deg,var(--gold),var(--green));
+  background:linear-gradient(90deg,var(--gold),#22c55e);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
@@ -134,9 +134,15 @@ button{
   cursor:pointer;
 }
 
+.analysis-title{
+  margin-top:50px;
+  font-size:22px;
+  font-weight:bold;
+}
+
 .results{
-  margin-top:60px;
-  display:grid;
+  margin-top:30px;
+  display:none;
   gap:25px;
 }
 
@@ -146,10 +152,7 @@ button{
   border-radius:20px;
   border:1px solid rgba(212,175,55,0.2);
   text-align:left;
-}
-
-.card h3{
-  margin-bottom:10px;
+  margin-top:20px;
 }
 
 .safe{color:var(--green);}
@@ -173,29 +176,29 @@ button{
 
 <div class="container">
   <h2>Analyse Stratégique Assistée</h2>
-  <p>
-    Entrez une rencontre pour obtenir une lecture structurée et hiérarchisée.
-  </p>
+  <p>Entrez une rencontre pour obtenir une lecture structurée.</p>
 
-  <input type="text" placeholder="Ex : PSG vs Marseille">
+  <input type="text" id="matchInput" placeholder="Ex : PSG vs Marseille">
   <br>
-  <button>Analyser</button>
+  <button onclick="analyzeMatch()">Analyser</button>
 
-  <div class="results">
+  <div class="analysis-title" id="analysisTitle"></div>
+
+  <div class="results" id="results">
 
     <div class="card">
       <h3 class="safe">SAFE</h3>
-      <p>Option prudente avec probabilité élevée basée sur la dynamique récente.</p>
+      <p id="safeText"></p>
     </div>
 
     <div class="card">
       <h3 class="semi">SEMI</h3>
-      <p>Option équilibrée entre risque et rendement potentiel.</p>
+      <p id="semiText"></p>
     </div>
 
     <div class="card">
       <h3 class="fun">FUN</h3>
-      <p>Option plus spéculative avec potentiel élevé mais risque assumé.</p>
+      <p id="funText"></p>
     </div>
 
   </div>
@@ -204,6 +207,29 @@ button{
 <script>
 function toggleMenu(){
   document.getElementById("nav").classList.toggle("active");
+}
+
+function analyzeMatch(){
+  const match = document.getElementById("matchInput").value;
+
+  if(match.trim() === ""){
+    alert("Veuillez entrer une rencontre.");
+    return;
+  }
+
+  document.getElementById("analysisTitle").innerHTML = 
+    "Analyse du match : " + match;
+
+  document.getElementById("safeText").innerHTML =
+    "Option prudente basée sur la dynamique récente et la stabilité de l'équipe favorite.";
+
+  document.getElementById("semiText").innerHTML =
+    "Option équilibrée combinant rendement potentiel et lecture tactique.";
+
+  document.getElementById("funText").innerHTML =
+    "Option plus spéculative à forte valeur potentielle.";
+
+  document.getElementById("results").style.display = "block";
 }
 </script>
 
